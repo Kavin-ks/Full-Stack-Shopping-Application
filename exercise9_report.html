@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mini Project (Exercise 9): Shopping Cart Full Stack Web Application using Vue.js, Spring Boot and MongoDB (Alternate Design)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Latin+Modern+Roman:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  @page {
+    size: A4 portrait;
+    margin: 20mm 20mm 20mm 20mm;
+    @bottom-center {
+      content: counter(page);
+      font-family: 'Latin Modern Roman', 'Times New Roman', serif;
+      font-size: 10pt;
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Latin Modern Roman', 'Times New Roman', Times, serif;
+    font-size: 10.5pt;
+    line-height: 1.48;
+    color: #000;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+  }
+
+  .page {
+    min-height: 100vh;
+    box-sizing: border-box;
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .page:last-child {
+    page-break-after: auto;
+  }
+
+  .title-block {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 20px;
+  }
+
+  .title-block h1 {
+    font-size: 15pt;
+    font-weight: bold;
+    margin: 0 0 4px 0;
+    line-height: 1.25;
+  }
+
+  .title-block h2 {
+    font-size: 13pt;
+    font-weight: bold;
+    margin: 0 0 4px 0;
+  }
+
+  .title-block .subtitle {
+    font-size: 10.5pt;
+    color: #333;
+    margin: 0 0 16px 0;
+  }
+
+  table.student-table {
+    border-collapse: collapse;
+    width: 52%;
+    margin: 0 auto;
+    font-size: 10pt;
+  }
+
+  table.student-table td {
+    border: 1px solid #000;
+    padding: 4px 12px;
+  }
+
+  table.student-table td:first-child {
+    font-weight: bold;
+    width: 48%;
+  }
+
+  h2.section-head {
+    font-size: 12.5pt;
+    font-weight: bold;
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+
+  h3.subsection-head {
+    font-size: 11pt;
+    font-weight: bold;
+    margin-top: 12px;
+    margin-bottom: 6px;
+  }
+
+  p {
+    margin: 0 0 8px 0;
+    text-align: justify;
+  }
+
+  ul {
+    margin: 2px 0 6px 0;
+    padding-left: 18px;
+  }
+
+  ul > li {
+    margin-bottom: 2px;
+  }
+
+  ol {
+    margin: 4px 0 8px 0;
+    padding-left: 18px;
+  }
+
+  ol > li {
+    margin-bottom: 4px;
+    text-align: justify;
+  }
+
+  .diagram-box {
+    background-color: #ffffff;
+    font-family: 'JetBrains Mono', Courier, monospace;
+    font-size: 7.6pt;
+    line-height: 1.2;
+    white-space: pre;
+    margin: 10px 0 4px 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .caption {
+    font-size: 9.5pt;
+    text-align: center;
+    margin-top: 4px;
+    margin-bottom: 12px;
+  }
+
+  .code-container {
+    background-color: #fafafa;
+    border: 1px solid #e5e5e5;
+    padding: 6px 10px;
+    margin: 4px 0 8px 0;
+    font-family: 'JetBrains Mono', Courier, monospace;
+    font-size: 7.5pt;
+    line-height: 1.3;
+    white-space: pre;
+    tab-size: 2;
+  }
+
+  .line-num {
+    color: #9ca3af;
+    display: inline-block;
+    width: 20px;
+    user-select: none;
+  }
+
+  .tag { color: #2563eb; }
+  .attr { color: #7c3aed; }
+  .str { color: #d97706; }
+  .kw { color: #dc2626; font-weight: bold; }
+  .cm { color: #6b7280; font-style: italic; }
+
+  .figure-container {
+    text-align: center;
+    margin: 10px 0;
+  }
+
+  .figure-container img {
+    width: 88%;
+    max-height: 240px;
+    object-fit: contain;
+    border: 1px solid #cbd5e1;
+  }
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page">
+  <div class="title-block">
+    <h1>Mini Project (Exercise 9): Shopping Cart Full Stack Web Application</h1>
+    <h2>using Vue.js, Spring Boot and MongoDB (Alternate Design)</h2>
+    <div class="subtitle">[CO3, K3]</div>
+
+    <table class="student-table">
+      <tr>
+        <td>Student Name</td>
+        <td>Kavinsoorya K S</td>
+      </tr>
+      <tr>
+        <td>Register Number</td>
+        <td>3122247001030</td>
+      </tr>
+      <tr>
+        <td>Date of Submission</td>
+        <td>September 16, 2026</td>
+      </tr>
+    </table>
+  </div>
+
+  <h2 class="section-head">1 &nbsp; Problem Statement</h2>
+  <p>
+    A Shopping Cart application allows users to view products, add products to a cart, update quantities, and remove products from the cart. The application is developed using Vue.js for the frontend, Spring Boot for the backend, and MongoDB for data storage.
+    <strong>Objective:</strong> Develop this web application considering <strong>alternate design options and techniques</strong>.
+  </p>
+
+  <h3 class="subsection-head">Frontend Layer &ndash; Vue.js</h3>
+  <p>The frontend provides the user interface and handles user interactions.</p>
+  <ul>
+    <li>Display available products with dynamic category filtering and live search.</li>
+    <li>Add products to the shopping cart with interactive quantity counters.</li>
+    <li>Update or remove products from the cart with real-time reactive feedback.</li>
+    <li>Send requests to the backend service.</li>
+    <li>Display cart details and total amount.</li>
+  </ul>
+
+  <h3 class="subsection-head">Backend Layer &ndash; Spring Boot</h3>
+  <p>The backend processes requests and manages the shopping cart operations using a decoupled service layer.</p>
+  <ul>
+    <li>Process requests from the frontend.</li>
+    <li>Add, update, and remove cart items with automated subtotal computation.</li>
+    <li>Calculate the total cart amount.</li>
+    <li>Communicate with the database via Spring Data Mongo Repositories.</li>
+  </ul>
+
+  <h3 class="subsection-head">Database Layer &ndash; MongoDB</h3>
+  <p>MongoDB stores the application data.</p>
+  <ul>
+    <li>Main collections: <code>products</code>, <code>cart</code></li>
+  </ul>
+
+  <h2 class="section-head">2 &nbsp; Alternate Design Options and Techniques</h2>
+  <ol>
+    <li><strong>Modular Component Composition:</strong> Separates UI concerns into dedicated components (<code>Navbar</code>, <code>ProductCatalog</code>, <code>CartView</code>) with reactive event passing and clean state management.</li>
+    <li><strong>Live Category Filters & Search:</strong> Immediate client-side querying across product categories (<em>Electronics</em>, <em>Audio</em>, <em>Mobile</em>, <em>Wearables</em>, <em>Fashion</em>, <em>Accessories</em>).</li>
+    <li><strong>Service-Layer Decoupling:</strong> Encapsulates cart business logic inside <code>CartService</code>, maintaining clean separation between Spring Boot REST Controllers and Data Repositories.</li>
+    <li><strong>Indexed MongoDB Documents:</strong> Optimized document collections with indexed fields for quick query response times.</li>
+  </ol>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page">
+  <h2 class="section-head">3 &nbsp; Full Stack 3-Tier Architecture</h2>
+  <p>The system architecture cleanly decouples the Presentation, Application Business Logic, and Persistence layers.</p>
+
+  <div class="diagram-box">
++-----------------------+      HTTP REST APIs       +-----------------------+
+|   Vue.js Frontend     | &lt;=======================&gt; |  Spring Boot Backend  |
+|  (Vite, Port 5176)    |      (JSON Payloads)      |  (Tomcat, Port 8080)   |
+| - Navbar.vue          |                           | - CartController      |
+| - ProductCatalog.vue  |                           | - CartService         |
+| - CartView.vue        |                           | - Mongo Repositories  |
+| - api.js Service      |                           +-----------+-----------+
++-----------------------+                                       | Mongo Driver
+                                                         Spring | Port 27017
+                                                     Data Mongo v
+                                                    +-----------------------+
+                                                    |  MongoDB (shopping_db)|
+                                                    | - "products" coll.    |
+                                                    | - "cart" coll.        |
+                                                    +-----------------------+
+  </div>
+  <div class="caption">Figure 1: Full Stack Alternate Design Architecture Diagram</div>
+
+  <h2 class="section-head">4 &nbsp; Database Layer Models (MongoDB)</h2>
+
+  <h3 class="subsection-head">4.1 &nbsp; Product Document Model (model/Product.java)</h3>
+  <div class="code-container">
+<span class="line-num"> 1</span><span class="kw">package</span> com.example.shoppingcart.model;
+<span class="line-num"> 2</span>
+<span class="line-num"> 3</span><span class="kw">import</span> lombok.*;
+<span class="line-num"> 4</span><span class="kw">import</span> org.springframework.data.annotation.Id;
+<span class="line-num"> 5</span><span class="kw">import</span> org.springframework.data.mongodb.core.index.Indexed;
+<span class="line-num"> 6</span><span class="kw">import</span> org.springframework.data.mongodb.core.mapping.Document;
+<span class="line-num"> 7</span>
+<span class="line-num"> 8</span>@Data @NoArgsConstructor @AllArgsConstructor
+<span class="line-num"> 9</span>@Document(collection = <span class="str">"products"</span>)
+<span class="line-num">10</span><span class="kw">public class</span> Product {
+<span class="line-num">11</span>    @Id <span class="kw">private</span> String id;
+<span class="line-num">12</span>    <span class="kw">private</span> String name;
+<span class="line-num">13</span>    <span class="kw">private double</span> price;
+<span class="line-num">14</span>    <span class="kw">private</span> String description;
+<span class="line-num">15</span>    @Indexed <span class="kw">private</span> String category;
+<span class="line-num">16</span>    <span class="kw">private</span> String emoji;
+<span class="line-num">17</span>    <span class="kw">private int</span> stock;
+<span class="line-num">18</span>}
+  </div>
+
+  <h3 class="subsection-head">4.2 &nbsp; CartItem Document Model (model/CartItem.java)</h3>
+  <div class="code-container">
+<span class="line-num"> 1</span><span class="kw">package</span> com.example.shoppingcart.model;
+<span class="line-num"> 2</span>
+<span class="line-num"> 3</span><span class="kw">import</span> lombok.*;
+<span class="line-num"> 4</span><span class="kw">import</span> org.springframework.data.annotation.Id;
+<span class="line-num"> 5</span><span class="kw">import</span> org.springframework.data.mongodb.core.mapping.Document;
+<span class="line-num"> 6</span>
+<span class="line-num"> 7</span>@Data @NoArgsConstructor @AllArgsConstructor
+<span class="line-num"> 8</span>@Document(collection = <span class="str">"cart"</span>)
+<span class="line-num"> 9</span><span class="kw">public class</span> CartItem {
+<span class="line-num">10</span>    @Id <span class="kw">private</span> String id;
+<span class="line-num">11</span>    <span class="kw">private</span> String productId;
+<span class="line-num">12</span>    <span class="kw">private</span> String name;
+<span class="line-num">13</span>    <span class="kw">private double</span> price;
+<span class="line-num">14</span>    <span class="kw">private int</span> quantity;
+<span class="line-num">15</span>    <span class="kw">private double</span> subTotal;
+<span class="line-num">16</span>    <span class="kw">private</span> String emoji;
+<span class="line-num">17</span>}
+  </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page">
+  <h2 class="section-head">5 &nbsp; Backend Layer &ndash; Service &amp; REST Controllers</h2>
+
+  <h3 class="subsection-head">5.1 &nbsp; CartService.java (Decoupled Business Logic)</h3>
+  <div class="code-container">
+<span class="line-num"> 1</span><span class="kw">package</span> com.example.shoppingcart.service;
+<span class="line-num"> 2</span>
+<span class="line-num"> 3</span>@Service
+<span class="line-num"> 4</span><span class="kw">public class</span> CartService {
+<span class="line-num"> 5</span>    @Autowired <span class="kw">private</span> CartRepository cartRepository;
+<span class="line-num"> 6</span>    @Autowired <span class="kw">private</span> ProductRepository productRepository;
+<span class="line-num"> 7</span>
+<span class="line-num"> 8</span>    <span class="kw">public</span> CartResponse getCart() { <span class="kw">return</span> buildResponse(); }
+<span class="line-num"> 9</span>
+<span class="line-num">10</span>    <span class="kw">public</span> CartResponse addItem(String productId, <span class="kw">int</span> quantity, Product fallbackProduct) {
+<span class="line-num">11</span>        Optional&lt;CartItem&gt; existing = cartRepository.findByProductId(productId);
+<span class="line-num">12</span>        <span class="kw">if</span> (existing.isPresent()) {
+<span class="line-num">13</span>            CartItem item = existing.get();
+<span class="line-num">14</span>            item.setQuantity(item.getQuantity() + quantity);
+<span class="line-num">15</span>            item.setSubTotal(item.getQuantity() * item.getPrice());
+<span class="line-num">16</span>            cartRepository.save(item);
+<span class="line-num">17</span>        } <span class="kw">else</span> {
+<span class="line-num">18</span>            Optional&lt;Product&gt; prodOpt = productRepository.findById(productId);
+<span class="line-num">19</span>            Product p = prodOpt.orElse(fallbackProduct);
+<span class="line-num">20</span>            <span class="kw">if</span> (p != <span class="kw">null</span>) {
+<span class="line-num">21</span>                CartItem newItem = <span class="kw">new</span> CartItem(<span class="kw">null</span>, p.getId(), p.getName(), p.getPrice(), quantity, p.getPrice() * quantity, p.getEmoji());
+<span class="line-num">22</span>                cartRepository.save(newItem);
+<span class="line-num">23</span>            }
+<span class="line-num">24</span>        }
+<span class="line-num">25</span>        <span class="kw">return</span> buildResponse();
+<span class="line-num">26</span>    }
+<span class="line-num">27</span>
+<span class="line-num">28</span>    <span class="kw">public</span> CartResponse updateQuantity(String id, <span class="kw">int</span> quantity) {
+<span class="line-num">29</span>        Optional&lt;CartItem&gt; itemOpt = cartRepository.findById(id);
+<span class="line-num">30</span>        <span class="kw">if</span> (itemOpt.isPresent()) {
+<span class="line-num">31</span>            CartItem item = itemOpt.get();
+<span class="line-num">32</span>            <span class="kw">if</span> (quantity &lt;= 0) cartRepository.deleteById(id);
+<span class="line-num">33</span>            <span class="kw">else</span> {
+<span class="line-num">34</span>                item.setQuantity(quantity);
+<span class="line-num">35</span>                item.setSubTotal(quantity * item.getPrice());
+<span class="line-num">36</span>                cartRepository.save(item);
+<span class="line-num">37</span>            }
+<span class="line-num">38</span>        }
+<span class="line-num">39</span>        <span class="kw">return</span> buildResponse();
+<span class="line-num">40</span>    }
+<span class="line-num">41</span>
+<span class="line-num">42</span>    <span class="kw">public</span> CartResponse removeItem(String id) {
+<span class="line-num">43</span>        cartRepository.deleteById(id);
+<span class="line-num">44</span>        <span class="kw">return</span> buildResponse();
+<span class="line-num">45</span>    }
+<span class="line-num">46</span>
+<span class="line-num">47</span>    <span class="kw">public</span> CartResponse clearCart() {
+<span class="line-num">48</span>        cartRepository.deleteAll();
+<span class="line-num">49</span>        <span class="kw">return</span> buildResponse();
+<span class="line-num">50</span>    }
+<span class="line-num">51</span>}
+  </div>
+
+  <h3 class="subsection-head">5.2 &nbsp; CartController.java (REST Controller)</h3>
+  <div class="code-container">
+<span class="line-num"> 1</span>@RestController @RequestMapping(<span class="str">"/api/cart"</span>) @CrossOrigin(origins = <span class="str">"*"</span>)
+<span class="line-num"> 2</span><span class="kw">public class</span> CartController {
+<span class="line-num"> 3</span>    @Autowired <span class="kw">private</span> CartService cartService;
+<span class="line-num"> 4</span>
+<span class="line-num"> 5</span>    @GetMapping <span class="kw">public</span> ResponseEntity&lt;CartResponse&gt; getCart() { <span class="kw">return</span> ResponseEntity.ok(cartService.getCart()); }
+<span class="line-num"> 6</span>    @PostMapping(<span class="str">"/add"</span>) <span class="kw">public</span> ResponseEntity&lt;CartResponse&gt; addToCart(@RequestBody Map&lt;String, Object&gt; p) {
+<span class="line-num"> 7</span>        <span class="kw">return</span> ResponseEntity.ok(cartService.addItem((String) p.get(<span class="str">"productId"</span>), ((Number) p.getOrDefault(<span class="str">"quantity"</span>, 1)).intValue(), <span class="kw">null</span>));
+<span class="line-num"> 8</span>    }
+<span class="line-num"> 9</span>    @PutMapping(<span class="str">"/items/{id}"</span>) <span class="kw">public</span> ResponseEntity&lt;CartResponse&gt; updateQuantity(@PathVariable String id, @RequestBody Map&lt;String, Object&gt; p) {
+<span class="line-num">10</span>        <span class="kw">return</span> ResponseEntity.ok(cartService.updateQuantity(id, ((Number) p.get(<span class="str">"quantity"</span>)).intValue()));
+<span class="line-num">11</span>    }
+<span class="line-num">12</span>    @DeleteMapping(<span class="str">"/items/{id}"</span>) <span class="kw">public</span> ResponseEntity&lt;CartResponse&gt; removeItem(@PathVariable String id) { <span class="kw">return</span> ResponseEntity.ok(cartService.removeItem(id)); }
+<span class="line-num">13</span>    @DeleteMapping(<span class="str">"/clear"</span>) <span class="kw">public</span> ResponseEntity&lt;CartResponse&gt; clearCart() { <span class="kw">return</span> ResponseEntity.ok(cartService.clearCart()); }
+<span class="line-num">14</span>}
+  </div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page">
+  <h2 class="section-head">6 &nbsp; Frontend Layer &ndash; Vue.js Components</h2>
+
+  <h3 class="subsection-head">6.1 &nbsp; API Client Service (src/services/api.js)</h3>
+  <div class="code-container">
+<span class="line-num"> 1</span><span class="kw">const</span> API_BASE_URL = <span class="str">'http://localhost:8080/api'</span>
+<span class="line-num"> 2</span>
+<span class="line-num"> 3</span><span class="kw">export const</span> api = {
+<span class="line-num"> 4</span>  getProducts: () =&gt; fetch(`${API_BASE_URL}/products`).then(r =&gt; r.json()),
+<span class="line-num"> 5</span>  getCart: () =&gt; fetch(`${API_BASE_URL}/cart`).then(r =&gt; r.json()),
+<span class="line-num"> 6</span>  addToCart: (productId, quantity, product) =&gt; fetch(`${API_BASE_URL}/cart/add`, {
+<span class="line-num"> 7</span>    method: <span class="str">'POST'</span>,
+<span class="line-num"> 8</span>    headers: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span> },
+<span class="line-num"> 9</span>    body: JSON.stringify({ productId, quantity, ...product })
+<span class="line-num">10</span>  }).then(r =&gt; r.json()),
+<span class="line-num">11</span>  updateQuantity: (id, quantity) =&gt; fetch(`${API_BASE_URL}/cart/items/${id}`, {
+<span class="line-num">12</span>    method: <span class="str">'PUT'</span>,
+<span class="line-num">13</span>    headers: { <span class="str">'Content-Type'</span>: <span class="str">'application/json'</span> },
+<span class="line-num">14</span>    body: JSON.stringify({ quantity })
+<span class="line-num">15</span>  }).then(r =&gt; r.json()),
+<span class="line-num">16</span>  removeFromCart: (id) =&gt; fetch(`${API_BASE_URL}/cart/items/${id}`, { method: <span class="str">'DELETE'</span> }).then(r =&gt; r.json()),
+<span class="line-num">17</span>  clearCart: () =&gt; fetch(`${API_BASE_URL}/cart/clear`, { method: <span class="str">'DELETE'</span> }).then(r =&gt; r.json())
+<span class="line-num">18</span>}
+  </div>
+
+  <h2 class="section-head">7 &nbsp; Output Screenshots</h2>
+
+  <div class="figure-container">
+    <img src="extracted_images/fig_p5_1.png" alt="Available Products Displayed from MongoDB">
+    <div class="caption">Figure 2: Product Catalog with Category Filters &amp; Stock Tracking</div>
+  </div>
+
+  <div class="figure-container">
+    <img src="extracted_images/fig_p5_2.png" alt="Category Filter and Toast Notification">
+    <div class="caption">Figure 3: Category Filtering and Real-Time Toast Notification</div>
+  </div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page">
+  <div class="figure-container">
+    <img src="extracted_images/fig_p6_1.png" alt="Shopping Cart View">
+    <div class="caption">Figure 4: Shopping Cart View with Synchronized MongoDB Items and Order Summary</div>
+  </div>
+
+  <div class="figure-container">
+    <img src="extracted_images/fig_p6_2.png" alt="Cart Quantity Adjustment">
+    <div class="caption">Figure 5: Cart Quantity Adjustment and Real-Time Total Recalculation</div>
+  </div>
+
+  <h2 class="section-head">8 &nbsp; Learning Outcomes</h2>
+  <ol>
+    <li>Designed and implemented a full-stack e-commerce web application utilizing alternate design patterns (Service-Layer abstraction, modular component breakdown, category filters, and live search).</li>
+    <li>Integrated Spring Boot REST APIs with MongoDB document persistence collections using Spring Data Mongo.</li>
+    <li>Maintained real-time asynchronous synchronization across client and database layers with automated subtotal and total calculations.</li>
+  </ol>
+
+  <h2 class="section-head">9 &nbsp; Conclusion</h2>
+  <p>
+    The Mini Project (Exercise 9) for the Shopping Cart Full Stack Web Application was successfully designed, developed, and verified using Vue.js for presentation, Spring Boot for business logic and RESTful endpoints, and MongoDB for NoSQL data persistence. The alternate design considerations—including modular component composition, live category filtering, dedicated service-layer abstraction, and real-time state synchronization—were completely implemented and verified.
+  </p>
+</div>
+
+</body>
+</html>

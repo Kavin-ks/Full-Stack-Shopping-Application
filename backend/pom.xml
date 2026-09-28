@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Aggregator only: lets you build every microservice with one `mvn package`.
+  Each service is still an independent Spring Boot application with its own parent, port and database.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.flipkart.clone</groupId>
+    <artifactId>flipkart-clone-backend</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <name>Flipkart Clone - Microservices</name>
+
+    <modules>
+        <module>api-gateway</module>
+        <module>user-service</module>
+        <module>product-service</module>
+        <module>cart-service</module>
+        <module>order-service</module>
+    </modules>
+</project>

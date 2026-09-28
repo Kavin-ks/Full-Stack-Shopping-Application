@@ -1,0 +1,426 @@
+/* ------------------------------------------------------------------
+   Flipkart design tokens
+------------------------------------------------------------------- */
+:root {
+  --fk-blue: #2874f0;
+  --fk-blue-dark: #1f5fc9;
+  --fk-yellow: #ffe500;
+  --fk-orange: #fb641b;
+  --fk-amber: #ff9f00;
+  --fk-green: #388e3c;
+  --fk-green-light: #26a541;
+  --fk-red: #ff6161;
+  --bg: #f1f3f6;
+  --surface: #ffffff;
+  --text: #212121;
+  --text-2: #878787;
+  --text-3: #9e9e9e;
+  --border: #e0e0e0;
+  --border-light: #f0f0f0;
+  --shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.12);
+  --radius: 4px;
+  --radius-lg: 8px;
+  --header-h: 56px;
+  --container: 1280px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--text);
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: 600;
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ------------------------------------------------------------------
+   Layout helpers
+------------------------------------------------------------------- */
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.page {
+  padding: 12px 0 32px;
+  min-height: calc(100vh - var(--header-h) - 260px);
+}
+
+.card {
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.muted {
+  color: var(--text-2);
+}
+
+.green {
+  color: var(--fk-green);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+}
+
+.gap-8 { gap: 8px; }
+.gap-12 { gap: 12px; }
+.gap-16 { gap: 16px; }
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+/* ------------------------------------------------------------------
+   Buttons
+------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 24px;
+  border: none;
+  border-radius: 2px;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.2px;
+  transition: box-shadow 0.15s, background 0.15s, opacity 0.15s;
+  white-space: nowrap;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-orange {
+  background: var(--fk-orange);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-amber {
+  background: var(--fk-amber);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-blue {
+  background: var(--fk-blue);
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-orange:hover:not(:disabled),
+.btn-amber:hover:not(:disabled),
+.btn-blue:hover:not(:disabled) {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.btn-outline {
+  background: #fff;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn-outline:hover:not(:disabled) {
+  border-color: var(--fk-blue);
+  color: var(--fk-blue);
+}
+
+.btn-sm {
+  height: 36px;
+  padding: 0 16px;
+  font-size: 14px;
+}
+
+.btn-block {
+  width: 100%;
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--fk-blue);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+}
+
+.text-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.text-btn:hover {
+  color: var(--fk-blue);
+}
+
+/* ------------------------------------------------------------------
+   Form fields (Flipkart floating-label style)
+------------------------------------------------------------------- */
+.field {
+  position: relative;
+  display: block;
+}
+
+.field input,
+.field select,
+.field textarea {
+  width: 100%;
+  height: 50px;
+  padding: 18px 14px 6px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: #fff;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.field textarea {
+  height: auto;
+  min-height: 90px;
+  padding-top: 22px;
+  resize: vertical;
+}
+
+.field select {
+  appearance: none;
+  padding-top: 18px;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  border-color: var(--fk-blue);
+}
+
+.field > span {
+  position: absolute;
+  left: 14px;
+  top: 7px;
+  font-size: 12px;
+  color: var(--text-2);
+  pointer-events: none;
+}
+
+.field.invalid input,
+.field.invalid select,
+.field.invalid textarea {
+  border-color: var(--fk-red);
+}
+
+.field-error {
+  margin-top: 4px;
+  color: #ff6161;
+  font-size: 12px;
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 5px 0;
+}
+
+.check input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--fk-blue);
+  cursor: pointer;
+}
+
+/* ------------------------------------------------------------------
+   Rating badge, price, badges
+------------------------------------------------------------------- */
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 5px 2px 7px;
+  border-radius: 3px;
+  background: var(--fk-green);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.rating.mid {
+  background: #ff9f00;
+}
+
+.rating.low {
+  background: #ff6161;
+}
+
+.price {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.mrp {
+  color: var(--text-2);
+  text-decoration: line-through;
+}
+
+.off {
+  color: var(--fk-green);
+  font-weight: 600;
+}
+
+.assured {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  height: 20px;
+  padding: 0 6px 0 4px;
+  border-radius: 3px;
+  background: #e8f0fe;
+  color: var(--fk-blue);
+  font-size: 11px;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.tag-green { background: #e7f5e9; color: var(--fk-green); }
+.tag-red { background: #ffeaea; color: #e53935; }
+.tag-amber { background: #fff4e0; color: #d97a00; }
+.tag-blue { background: #e8f0fe; color: var(--fk-blue); }
+.tag-grey { background: #f0f0f0; color: #616161; }
+
+/* ------------------------------------------------------------------
+   Misc
+------------------------------------------------------------------- */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e6e6e6 37%, #f0f0f0 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.2s ease infinite;
+  border-radius: 2px;
+}
+
+@keyframes shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid #dfe8fb;
+  border-top-color: var(--fk-blue);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.center-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 16px;
+  gap: 12px;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border-light);
+  border: 0;
+  margin: 0;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
